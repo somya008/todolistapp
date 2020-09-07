@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang= "en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Tasks List</title>
+</head>
+
+<body>
+
+<div class ="container">
+<h3>ToDo List</h3>
+<hr>
+<!-- add a button for adding a new employee -->
+<a th:href ="@{/todo/showFormForAdd}" class ="btn btn-primary btn -sm mb-3">Add Task</a>
+<a th:href ="@{/todo/logout}" class ="btn btn-primary btn -sm mb-3" style="margin-left:80%">Logout</a>
+
+<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Task Name</th>
+				<th>Completion Status</th>
+				<th>Last Updated</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tasks : ${alltasks}">
+				<td th:text="${tasks.description}" />	
+				<td th:text="${tasks.status}" />		
+				<td th:text="${tasks.update_dt}" />	
+				
+				<td>
+						<a th:href ="@{/todo/showFormForUpdate(item_id = ${tasks.item_id})}"
+                        class ="btn btn-info btn-sm">Update</a>
+                        
+						<!-- Add "delete" button/link -->					
+						<a th:href="@{/todo/delete(item_id=${tasks.item_id})}"
+						   class="btn btn-danger btn-sm"
+						   onclick="if (!(confirm('Are you sure you want to delete this Task?'))) return false">
+							Delete
+						</a>
+                  </td>
+			</tr>
+		</tbody>		
+	</table>
+	</div>
+	</body>
+	</html>
