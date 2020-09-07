@@ -1,2 +1,1 @@
-# todolistapp
-springboot webap for todolist
+please check TODOAPP-description.pdf
